@@ -4,24 +4,14 @@
 # Протестируем функцию на файле «article.txt» со следующим содержимым:
 
 
-# with open("art.txt", "r", encoding="utf-8") as file:
-#     with open("res.txt", "w", encoding="utf-8") as file:
-#         text = file.read().splitlines()
-#         for i in range(len(text)):
-#             if text[i].split():
-#                 print(text)
-
-
-def read_last(lines, file):
-    if lines > 0:
-        with open(file, encoding="utf-8") as text:
-            file_lines = text.readlines()[-lines:]
-        for line in file_lines:
-            print(line.strip())
-        else:
-            print("Количество строк может быть только целым положительным")
+def longest_words(file):
+    with open(file, encoding='utf-8') as text:
+        words = text.read().split()
+        max_length = len(max(words, key=len))
+        sought_words = [word for word in words if len(word) == max_length]
+        if len(sought_words) == 1:
+            return sought_words[0]
+        return sought_words
  
  
-# Тесты
-read_last(3, "art.txt")
-read_last(-5, "art.txt")
+print(longest_words('art.txt'))
